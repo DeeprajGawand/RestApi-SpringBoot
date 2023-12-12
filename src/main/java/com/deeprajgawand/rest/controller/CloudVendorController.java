@@ -1,8 +1,11 @@
 package com.deeprajgawand.rest.controller;
 
 import com.deeprajgawand.rest.model.CloudVendor;
+import com.deeprajgawand.rest.response.ResponseHandler;
 import com.deeprajgawand.rest.service.CloudVendorService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +18,11 @@ public class CloudVendorController {
    CloudVendorService cloudVendorService;
 
     @GetMapping("{vendorId}")
-    public CloudVendor getCloudVendorDetails( @PathVariable("vendorId") String vendorId){
+    public ResponseEntity<Object> getCloudVendorDetails(@PathVariable("vendorId") String vendorId)
+    {
+      return   ResponseHandler.responseBuilder("Requested Vendor Details are given here",
+              HttpStatus.OK,cloudVendorService.getCloudVendor(vendorId));
 
-        return cloudVendorService.getCloudVendor(vendorId);
     }
 
     @GetMapping
