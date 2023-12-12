@@ -13,7 +13,7 @@ public class CloudVendorExceptionHandler {
             (CloudVendorNotFoundException cloudVendorNotFoundException){
 
         CloudVendorException cloudVendorException = new CloudVendorException(
-                cloudVendorNotFoundException.getMessage(),
+                cloudVendorNotFoundException.getMessage(),//to get getMessage() we extend from run time exception
                 cloudVendorNotFoundException.getCause(),
                 HttpStatus.NOT_FOUND
         );
